@@ -1,6 +1,14 @@
 Readme
 
 
+### To Start
+On server side: 
+``` $ python app.py ```
+
+On client cli
+``` $ python assistant_cli.py ```
+
+
 
 ##################
 ## Queries to llm
@@ -73,7 +81,7 @@ curl -X POST http://localhost:4891/v1/chat/completions -d '{
     },
     {
       "role": "user",
-      "content": "Help me write a hello world program in Python"
+      "content": "Help me write a hello world program in Python in a file"
     }
   ],
   "temperature": 0.7,

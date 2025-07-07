@@ -1,11 +1,16 @@
 import webbrowser
 import subprocess
+from duckduckgo_search import DDGS
+
+max_results=3
 
 def execute_action(action, target=None):
     action = action.lower()
     try:
         if action == "open_app":
             return open_application(target)
+        elif action == "web_search":
+            return web_search(target, max_results)
         elif action == "open_url":
             if target:
                 webbrowser.open(target)  # opens URL in default browser
@@ -40,3 +45,12 @@ def open_application(app_name):
         return "File Explorer opened."
     else:
         return f"Don't know how to open '{app_name}'."
+
+
+# Function to perform web search
+def web_search(query, max_results):
+    results = []
+    with DDGS() as ddgs:
+        for r in ddgs.text(query, max_results=max_results):
+            results.append(f"{r['title']}: {r['body']} ({r['href']})")
+    return "\n\n".join(results)
